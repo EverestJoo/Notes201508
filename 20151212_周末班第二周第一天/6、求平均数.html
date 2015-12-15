@@ -99,6 +99,7 @@
     //换一种思想实现
     function avgFn() {
         [].sort.call(arguments, function (a, b) {
+            console.dir(arguments);
             return a - b;
         });
         [].shift.call(arguments);
