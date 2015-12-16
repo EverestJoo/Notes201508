@@ -29,7 +29,8 @@ function bindData() {
     tBody.appendChild(frg);
     frg = null;
 }
-bindData(); gnj
+bindData();
+gnj
 
 //3、实现奇偶行变色
 function changeBg() {

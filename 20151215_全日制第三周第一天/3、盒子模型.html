@@ -70,10 +70,11 @@
     //这种情况需要我们获取元素的具体样式来操作的了
 
     //1、"元素.style.样式属性名" ->oDiv.style.height
-    //弊端:"只能"获取在"行内"上编写过的样式,不管在哪些了对应的样式,只要没有在行内上写过,都获取不到
+    //弊端:"只能"获取在"行内"上编写过的样式,不管在哪写了对应的样式,只要没有在行内上写过,都获取不到
     //oDiv.style.height 由于height并没有写在行内样式上(写在样式表里了),所以获取的结果依然是""
 
-    //2、通过 window.getComputedStyle 获取所有经过浏览器计算的样式(只要的你的元素在浏览器加载的时候渲染过,能够在页面中展示,那么当前元素的所有的样式都是经过浏览器计算的,哪怕你没有写)
+    //2、通过 window.getComputedStyle 获取所有经过浏览器计算的样式(只要的你的元素在浏览器加载的时候渲染过,
+    // 能够在页面中展示,那么当前元素的所有的样式都是经过浏览器计算的,哪怕你没有写)
     //window.getComputedStyle(要操作的元素,元素的伪类(JS一般不用->null)) ->这个获取到的结果是一个对象数据类型的值(CSSStyleDeclaration内置类的一个实例),里面包含了我们所有经过浏览器计算过的样式属性名和属性值
     //我们想获取其中某一个样式的值,只需要对象.属性名即可->获取的结果根据自身的情况是带这个单位的
     //var obj = window.getComputedStyle(oDiv, null);
@@ -92,31 +93,33 @@
      *    返回的是指定元素的指定的样式属性的值(把一些自带的单位去掉)
      * by Team on 2015/12/15
      */
-    //    function getCss(curEle, attr) {
-    //        var val = null, reg = null;
-    //        if ("getComputedStyle" in window) {
-    //            val = window.getComputedStyle(curEle, null)[attr];
-    //        } else {
-    //            //对于我们的IE6~8浏览器,透明度这个样式,它使用的不是opacity,而是filter,在部分浏览器中我们如果通过opacity获取透明度的话是获取不到的
-    //            if (attr === "opacity") {
-    //                //获取我们filter属性得到的结果 "alpha(opacity=11.11)"
-    //                val = curEle.currentStyle["filter"];
-    //                //我们根据它的返回值编写一个正则,可以把11.11捕获到
-    //                reg = /^alpha\(opacity=((?:\d|(?:[1-9]\d+))(?:\.\d+)?)\)$/;
-    //                //开始捕获我们需要的那个数字
-    //                var tempVal = reg.exec(val);
-    //                //判断是否捕获到,捕获到的话把第一个分组的结果给val,没有的话让默认的值100
-    //                val = tempVal ? tempVal[1] : 100;
-    //                //由于我们的filter是把opacity的值*100得到的,我们还需要把得到的值/100才和我们的opacity保持统一
-    //                val = val / 100;
-    //            } else {
-    //                val = curEle.currentStyle[attr];
-    //            }
-    //        }
-    //        //判断如果获取的val的值是(数字+单位)这种格式的,我们把单位去掉,否则获取的是啥我们就返回啥
-    //        reg = /^[+-]?(\d|([1-9]\d+))(\.\d+)?(px|pt|em|rem)$/;
-    //        return reg.test(val) ? parseFloat(val) : val;
-    //    }
+//        function getCss(curEle, attr) {
+//            var val = null, reg = null;
+//            if ("getComputedStyle" in window) {
+//                val = window.getComputedStyle(curEle, null)[attr];
+//            } else {
+//                //对于我们的IE6~8浏览器,透明度这个样式,它使用的不是opacity,而是filter,在部分浏览器中
+//     //我们如果通过opacity获取透明度的话是获取不到的
+//                if (attr === "opacity") {
+//                    //获取我们filter属性得到的结果 "alpha(opacity=11.11)"
+//                    val = curEle.currentStyle["filter"];
+//                    //我们根据它的返回值编写一个正则,可以把11.11捕获到
+//                    reg = /^alpha\(opacity=((?:\d|(?:[1-9]\d+))(?:\.\d+)?)\)$/;
+//                    //开始捕获我们需要的那个数字
+//                    var tempVal = reg.exec(val);
+//                    //判断是否捕获到,捕获到的话把第一个分组的结果给val,没有的话让默认的值100
+//                    val = tempVal ? tempVal[1] : 100;
+//                    console.log(tempVal);
+//                    //由于我们的filter是把opacity的值*100得到的,我们还需要把得到的值/100才和我们的opacity保持统一
+//                    val = val / 100;
+//                } else {
+//                    val = curEle.currentStyle[attr];
+//                }
+//            }
+//            //判断如果获取的val的值是(数字+单位)这种格式的,我们把单位去掉,否则获取的是啥我们就返回啥
+//            reg = /^[+-]?(\d|([1-9]\d+))(\.\d+)?(px|pt|em|rem)$/;
+//            return reg.test(val) ? parseFloat(val) : val;
+//        }
 
     function getCss(curEle, attr) {
         var val = null, reg = null;
@@ -134,8 +137,7 @@
         }
         reg = /^[+-]?(\d|([1-9]\d+))(\.\d+)?(px|pt|em|rem)$/;
         return reg.test(val) ? parseFloat(val) : val;
-    }
-
+   }
     var a = getCss(oDiv, "opacity");
     console.log(a);
 </script>
