@@ -27,13 +27,15 @@
             overflow: hidden;
 
             opacity: 0.111111;
-            filter: alpha(opacity=11.1111); /*在IE下设置元素的透明度不是使用opacity,而是使用filter*/
+            filter: alpha(opacity=0.1111); /*在IE下设置元素的透明度不是使用opacity,而是使用filter*/
         }
     </style>
 </head>
 <body>
 <div id="div1">
-    勿忘初心方得始终!站在台风口上,猪都能飞起来!勿忘初心方得始终!站在台风口上,猪都能飞起来!勿忘初心方得始终!站在台风口上,猪都能飞起来!勿忘初心方得始终!站在台风口上,猪都能飞起来!勿忘初心方得始终!站在台风口上,猪都能飞起来!
+    勿忘初心方得始终!站在台风口上,猪都能飞起来!勿忘初心方得始终!站在台风口上,猪都能飞起来!
+    勿忘初心方得始终!站在台风口上,猪都能飞起来!勿忘初心方得始终!站在台风口上,猪都能飞起来!
+    勿忘初心方得始终!站在台风口上,猪都能飞起来!
 </div>
 
 <script type="text/javascript">
@@ -93,51 +95,54 @@
      *    返回的是指定元素的指定的样式属性的值(把一些自带的单位去掉)
      * by Team on 2015/12/15
      */
-//        function getCss(curEle, attr) {
-//            var val = null, reg = null;
-//            if ("getComputedStyle" in window) {
-//                val = window.getComputedStyle(curEle, null)[attr];
-//            } else {
-//                //对于我们的IE6~8浏览器,透明度这个样式,它使用的不是opacity,而是filter,在部分浏览器中
-//     //我们如果通过opacity获取透明度的话是获取不到的
-//                if (attr === "opacity") {
-//                    //获取我们filter属性得到的结果 "alpha(opacity=11.11)"
-//                    val = curEle.currentStyle["filter"];
-//                    //我们根据它的返回值编写一个正则,可以把11.11捕获到
-//                    reg = /^alpha\(opacity=((?:\d|(?:[1-9]\d+))(?:\.\d+)?)\)$/;
-//                    //开始捕获我们需要的那个数字
-//                    var tempVal = reg.exec(val);
-//                    //判断是否捕获到,捕获到的话把第一个分组的结果给val,没有的话让默认的值100
-//                    val = tempVal ? tempVal[1] : 100;
-//                    console.log(tempVal);
-//                    //由于我们的filter是把opacity的值*100得到的,我们还需要把得到的值/100才和我们的opacity保持统一
-//                    val = val / 100;
-//                } else {
-//                    val = curEle.currentStyle[attr];
-//                }
-//            }
-//            //判断如果获取的val的值是(数字+单位)这种格式的,我们把单位去掉,否则获取的是啥我们就返回啥
-//            reg = /^[+-]?(\d|([1-9]\d+))(\.\d+)?(px|pt|em|rem)$/;
-//            return reg.test(val) ? parseFloat(val) : val;
-//        }
-
-    function getCss(curEle, attr) {
-        var val = null, reg = null;
-        if ("getComputedStyle" in window) {
-            val = window.getComputedStyle(curEle, null)[attr];
-        } else {
-            if (attr === "opacity") {
-                val = curEle.currentStyle["filter"];
-                reg = /^alpha\(opacity=((?:\d|(?:[1-9]\d+))(?:\.\d+)?)\)$/;
-                var tempVal = reg.exec(val);
-                val = tempVal ? tempVal[1] / 100 : 1;
+        function getCss(curEle, attr) {
+            var val = null, reg = null;var val1=null,val2=null;
+            if ("getComputedStyle" in window) {
+                val = window.getComputedStyle(curEle, null)[attr];
+               // val1=window.getComputedStyle(curEle,null).attr;
+              //  val2=window.getComputedStyle(curEle,null)["attr"];
             } else {
-                val = curEle.currentStyle[attr];
+                //对于我们的IE6~8浏览器,透明度这个样式,它使用的不是opacity,而是filter,在部分浏览器中
+     //我们如果通过opacity获取透明度的话是获取不到的
+                if (attr === "opacity") {
+                    //获取我们filter属性得到的结果 "alpha(opacity=11.11)"
+                    val = curEle.currentStyle["filter"];
+                    console.log(val);
+                    //我们根据它的返回值编写一个正则,可以把11.11捕获到
+                    reg = /^alpha\(opacity=((?:\d|(?:[1-9]\d+))(?:\.\d+)?)\)$/;
+                   // reg = /^alpha\(opacity=((\d|([1-9]\d+))(\.\d+)?)\)$/;
+                    //开始捕获我们需要的那个数字
+                    var tempVal = reg.exec(val);
+                    //判断是否捕获到,捕获到的话把第一个分组的结果给val,没有的话让默认的值100
+                    val = tempVal ? tempVal[1] : 100;
+                    console.log(tempVal);
+                    //由于我们的filter是把opacity的值*100得到的,我们还需要把得到的值/100才和我们的opacity保持统一
+                    val = val / 100;
+                } else {
+                    val = curEle.currentStyle[attr];
+                }
             }
+            //判断如果获取的val的值是(数字+单位)这种格式的,我们把单位去掉,否则获取的是啥我们就返回啥
+            reg = /^[+-]?(\d|([1-9]\d+))(\.\d+)?(px|pt|em|rem)$/;
+            return reg.test(val) ? parseFloat(val) : val;
         }
-        reg = /^[+-]?(\d|([1-9]\d+))(\.\d+)?(px|pt|em|rem)$/;
-        return reg.test(val) ? parseFloat(val) : val;
-   }
+//    function getCss(curEle, attr) {
+//        var val = null, reg = null;
+//        if ("getComputedStyle" in window) {
+//            val = window.getComputedStyle(curEle, null)[attr];
+//        } else {
+//            if (attr === "opacity") {
+//                val = curEle.currentStyle["filter"];
+//                reg = /^alpha\(opacity=((?:\d|(?:[1-9]\d+))(?:\.\d+)?)\)$/;
+//                var tempVal = reg.exec(val);
+//                val = tempVal ? tempVal[1] / 100 : 1;
+//            } else {
+//                val = curEle.currentStyle[attr];
+//            }
+//        }
+//        reg = /^[+-]?(\d|([1-9]\d+))(\.\d+)?(px|pt|em|rem)$/;
+//        return reg.test(val) ? parseFloat(val) : val;
+//   }
     var a = getCss(oDiv, "opacity");
     console.log(a);
 </script>

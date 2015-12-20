@@ -58,16 +58,63 @@
     //    });
     //    console.log(str);
 
-
     //1、获取一个字符串中出现次数最多的字符?
-    //var str = "zhufengpeixun";
-
+//    var str = "zhufengpeixun";
+//    function MaxCase(str) {
+//        var reg = /\w/g;
+//        var obj = {}, value = "";
+//        var ary = [], max = 0;
+//        str.replace(reg, function () {//1 获取每个字母出现的次数
+//            value = arguments[0];
+//            obj[value] >= 1 ? obj[value]++ : obj[value] = 1;
+//        });
+//        for (var key in obj) {//3 在获取最大次数只有，找到对应的字母
+//            for (var val in obj) {//2 获取字母出现的最大次数
+//                obj[val] >= max ? max = obj[val] : null;
+//            }
+//            obj[key] === max ? ary.push(key) : null;
+//        }
+//        console.log("出现次数最多的字母是" + ary.toString() + "是 " + max + "次 ");
+//    }
+//    MaxCase(str);
     //2、千分符
-    //var str = "5634780";//->"5 634 780"
-
+    var str = "5631113334780";//->"5 633 334 780"
+    var reg=/\d{3}/g;
+    switch (str.length%3){
+        case 0:
+            str.replace(reg, function () {
+                return arguments[0]+" ";
+            });
+            break;
+        case 1:
+            var str1=null;
+            str1=str.slice(1,str.length);
+            str1= str1.replace(reg, function () {
+                return arguments[0]+" ";
+            });
+            str=str[0]+" "+str1;
+            break;
+        default :
+            var str2=null;
+            str2=str.slice(2,str.length);
+            str2= str2.replace(reg, function () {
+                console.log(arguments[0]);
+                return arguments[0]+" ";
+            });
+            str=str[0]+" "+str[1]+" "+str1;
+                break;
+            console.log(str);
+    }
+    console.log(str);
     //3、获取地址栏中的问号传递进来的参数
-    //https://passport.baidu.com/v2/?reg=200&tt=300&gid=100
+    var str="https://passport.baidu.com/v2/?reg=200&tt=300&gid=100";
     //{reg:200,tt:300,gid:100}
+    var obj={};
+    var reg=/([a-z]{2,})=(\d+)/g;
+    str.replace(reg, function () {
+        obj[arguments[1]]=Number(arguments[2]);
+    })
+    console.log(obj );
 
     //4、格式化时间
     //var str="2015-12-14 13:8:5"; ->"2015年12月14日 13时08分05秒"
