@@ -1,4 +1,4 @@
-var dataAry = ["img/banner1.jpg", "img/banner2.jpg", "img/banner3.jpg", "img/banner4.jpg"];
+var dataAry = ["img/Big1.jpg", "img/Big2.jpg", "img/Big3.jpg", "img/Big4.jpg","img/Big5.jpg","img/Big6.jpg"];
 
 var outer = document.getElementById("outer");
 var inner = document.getElementById("inner");
