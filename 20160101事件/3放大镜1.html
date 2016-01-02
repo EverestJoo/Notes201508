@@ -18,14 +18,8 @@
 </body>
 </html>
 <script>
-//放大镜是按比例放大
-//遮罩比小图=右则的显示区比大图
-/*
-	300/950=遮罩宽/300
-	223/706=庶罩的高/223
-*/
-var w=300/950*300;
-var h=223/706*223;
+    var w=300/950*300;
+    var h=223/706*223;
 
 var oSmall=document.getElementById("small");
 oSmall.onmouseenter=function(e){
@@ -33,7 +27,6 @@ oSmall.onmouseenter=function(e){
 	oMask.id="mask";
 	this.appendChild(oMask);
 	with(oMask.style){
-		
 		left=e.pageX-this.offsetLeft+"px";
 		top=e.pageY-this.offsetTop+"px";
 		width=w+"px";
@@ -56,9 +49,9 @@ oSmall.onmousemove=function(e){
 	var oMask=document.getElementById("mask");
 	var oShow=document.getElementById("show");
 	if(oMask){
-		var l=e.pageX-this.offsetLeft-oMask.offsetWidth/2;
-		var t=e.pageY-this.offsetTop-oMask.offsetHeight/2;
 		with(oMask.style){
+			var l=e.pageX-this.offsetLeft-oMask.offsetWidth/2;
+			var t=e.pageY-this.offsetTop-oMask.offsetHeight/2;
 			if(l<=0){
 				left=0;
 				//oShow.scrollLeft=0;
