@@ -97,7 +97,7 @@ function run(e){
 		e.target=e.srcElement;
 		e.stopPropagation=function(){e.cancelBubble=true;}
 		e.preventDefault=function(){e.returnValue=false;}
-		e.pageX=(document.documentElement.srollLeft||document.body.scrollLeft)+e.clientX;
+		e.pageX=(document.documentElement.scrollLeft||document.body.scrollLeft)+e.clientX;
 		e.pageY=(document.documentElement.scrollTop||document.body.scrollTop)+e.clientY;
 	}
 	var a=this["onEvent"+type];
