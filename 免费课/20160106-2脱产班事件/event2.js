@@ -9,10 +9,7 @@ function on(ele,type,fn){//如果事件类型是以self为前缀的，则说明�
 		}
 		a.push(fn);
 		return;//处理完了自定义方法则结束。不需要再去当系统事件再执行了。
-	
-	
 	}
-	
 	if(ele.addEventListener){
 		ele.addEventListener(type,fn,false);
 		return;	
@@ -34,12 +31,13 @@ function run(){
 	var e=window.event;
 	var type=e.type;
 	if(!e.target){
-		e.target=e.srcElement
-		e.stopPropagation = function(){ e.cancelBubble = true;}
-		e.preventDefault = function(){ e.returnValue = false;}
+		e.target=e.srcElement;
+		e.stopPropagation = function(){ e.cancelBubble = true;};
+		e.preventDefault = function(){ e.returnValue = false;};
 		e.pageX = e.clientX +(document.documentElement.scrollLeft||document.body.scrollLeft);
 		e.pageY = e.clientY +(document.documentElement.scrollTop||document.body.scrollTop);
 		}
+
 	var a=this["onEvent"+type];
 	for(var i=0;i<a.length;i++){
 	if(typeof a[i]=="function"){
@@ -49,6 +47,7 @@ function run(){
 			i--;
 			}
 	}
+			
 }
 
 function off(ele,type,fn){
@@ -86,9 +85,7 @@ function selfRun(selfType,event){//selfType是指自定义的事件，event是�
 	var a=this["self"+selfType];//这个数组是原来设计好的。
 	if(a){
 		for(var i=0;i<a.length;i++){
-			a[i].call(this,event);//遍历执行。并且使数组里的方法在运行的时候，
-			// 里面的this要指向当前的这个元素（this），
-			// 还要能让这个方法得到系统的事件对象event;
+			a[i].call(this,event);//遍历执行。并且使数组里的方法在运行的时候，里面的this要指向当前的这个元素（this），还要能让这个方法得到系统的事件对象event;
 		}
 	}
 	
