@@ -43,13 +43,13 @@
     //    [].slice();
 
 
-    function Fn() {
-        this.x = 100;
-    }
-    Fn.prototype.getX = function () {
-        console.log(this.x);
-    };
-    var f = new Fn;
+//    function Fn() {
+//        this.x = 100;
+//    }
+//    Fn.prototype.getX = function () {
+//        console.log(this.x);
+//    };
+//    var f = new Fn;
 
 
     //三、函数的多面性
@@ -101,7 +101,7 @@
     f.getNum();
     Fn.prototype.getNum();
     console.log(num);
-    var n = Fn(num);
+    var n = Fn(num);//函数Fn执行，this是window，这样第89行的this.num=200，改变的是全局的num
     console.log(n);
     console.log(num);
 </script>

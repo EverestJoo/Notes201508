@@ -7,7 +7,7 @@ var tBody = oTab.tBodies[0];
 var tHead = oTab.tHead;
 var oThs = tHead.rows[0].cells;
 var oRows = tBody.rows;
-
+console.log(oRows);
 //1、数据绑定->把json.js中的data里面的内容绑定到tBody中
 function bindData() {
     var frg = document.createDocumentFragment();

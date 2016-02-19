@@ -131,7 +131,7 @@ for(var i=0;i<oLis.length;i++){
 	oLis.item(i).onclick=changeTab;
 }
 function changeTab(){//实现核心的选项卡切换功能的方法
-	var index=getIndex(this);
+	var index=DOM.getIndex(this);
 	//alert(index);//当循环结束的时候，这个index就是它的索引值
 	//接下来要实现：让点到的这个li加上选中的样式（selectedTab），让它的兄弟节点移除这个样式（selectedTab）
 	this.className="tab selectedTab";

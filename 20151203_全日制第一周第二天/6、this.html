@@ -23,21 +23,21 @@
     var obj = {
         fn: fn
     };
-    //    fn();//this->window
-    //    obj.fn();//this->obj
-    //    document.getElementById("div1").onclick = fn;//this->#div1
+        fn();//this->window
+        obj.fn();//this->obj
+        document.getElementById("div1").onclick = fn;//this->#div1
 
-    //    document.getElementById("div1").onclick = function () {
-    //        //匿名函数中的this->#div1
-    //        fn();//fn执行前面没有"."所以fn中的this还是window
-    //    };
+        document.getElementById("div1").onclick = function () {
+            //匿名函数中的this->#div1
+            fn();//fn执行前面没有"."所以fn中的this还是window
+        };
 
-    //    document.getElementById("div1").onclick = (function () {
-    //        console.log(this);//window
-    //        return function () {
-    //            console.log(this);//#div1
-    //        }
-    //    })();
+        document.getElementById("div1").onclick = (function () {
+            console.log(this);//window
+            return function () {
+                console.log(this);//#div1
+            }
+        })();
     //你以为，你以为的，就是你以为的
 
     //    function fn() {

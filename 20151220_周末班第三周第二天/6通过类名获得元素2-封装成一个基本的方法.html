@@ -28,6 +28,7 @@
     </ul>
 </body>
 </html>
+<script src="DOM.js"></script>
 <script>
 //这个方法不足是只能通过一个类名获得元素，如果是多类名就没办法了
 document.getElementsByClassName("ab ab-cd cd promoted");
@@ -43,9 +44,11 @@ function byClass(strClass){
 	}
 	return a;
 }
-var a=byClass("tab");
+var a=byClass("selectedTab");
 //以下是测试代码
 for(var i=0;i<a.length;i++){
 	a[i].style.backgroundColor="red";
+    DOM.addClass(a[i],"cs")
 }
+
 </script>

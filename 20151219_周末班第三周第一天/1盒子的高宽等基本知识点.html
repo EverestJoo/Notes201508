@@ -30,7 +30,7 @@ ele.offsetWidth;//clientWidth+(左右的)borderWidth
 window.getComputedStyle(ele,null).width
 getComputedStyle//得到计算的样式，把这个盒子在浏览器显示的结果计算出来
 //这是标准浏览器的方法
-var obj=getComputedStyle(ele,null);//第一个参数ele是被计算的那个DOM元素，第二个参数可选，计算指定的伪类（伪元素）的样式对象。 它的返回值是一个对象，这个对象里包含的当前这个浏览所支持的所有的CSS属性
+var obj=getComputedStyle(ele,null);//第一个参数ele是被计算的那个DOM元素，第二个参数可选，计算指定的伪类（伪元素）的样式对象。 它的返回值是一个对象，这个对象里包含的当前这个浏览器所支持的所有的CSS属性
 var width=obj.width;
 var height=obj.height;
 

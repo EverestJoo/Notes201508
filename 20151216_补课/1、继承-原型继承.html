@@ -31,8 +31,7 @@
     }
     B.prototype = new A;
     var b = new B;
-
-
+    console.log(b.x)
     //子类重写父类的方法
     //    b.__proto__.__proto__.getX = function () {
     //        console.log(this.x + 1000);
